@@ -3,6 +3,7 @@ package org.kaesoron.warehouse.dao;
 import org.kaesoron.warehouse.exceptions.NotFoundException;
 import org.kaesoron.warehouse.models.HDD;
 import org.kaesoron.warehouse.repository.HDDRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,26 +24,21 @@ public class HDDDAO {
     }
 
     @Transactional
-    public void save(HDD hdd) {
+    public HDD save(HDD hdd) {
         hddRepository.save(hdd);
+        return hdd;
     }
 
     @Transactional
-    public void update(long id, HDD hdd) {
-        HDD toBeUpdated = show(id);
-        toBeUpdated.setCommodityType(hdd.getCommodityType());
-        toBeUpdated.setSeriesNumber(hdd.getSeriesNumber());
-        toBeUpdated.setManufacturer(hdd.getManufacturer());
-        toBeUpdated.setPrice(hdd.getPrice());
-        toBeUpdated.setQuantity(hdd.getQuantity());
-        toBeUpdated.setVolume(hdd.getVolume());
-        toBeUpdated.setVolumeMeasure(hdd.getVolumeMeasure());
-        hddRepository.save(toBeUpdated);
+    public HDD update(HDD hddFromDB, HDD newHdd) {
+        BeanUtils.copyProperties(newHdd, hddFromDB, "id");
+        hddRepository.save(hddFromDB);
+        return hddFromDB;
     }
 
     @Transactional
-    public void delete (long id) {
-        hddRepository.deleteById(id);
+    public void delete (HDD hdd) {
+        hddRepository.delete(hdd);
     }
 
 }
