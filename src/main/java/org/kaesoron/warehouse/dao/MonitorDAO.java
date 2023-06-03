@@ -2,6 +2,7 @@ package org.kaesoron.warehouse.dao;
 
 import org.kaesoron.warehouse.models.Monitor;
 import org.kaesoron.warehouse.repository.MonitorRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,30 +18,22 @@ public class MonitorDAO {
         return monitorRepository.findAll();
     }
 
-    public Monitor show(long id) {
-        return monitorRepository.findById(id).orElse(null);
-    }
-
     @Transactional
-    public void save(Monitor monitor) {
+    public Monitor save(Monitor monitor) {
         monitorRepository.save(monitor);
+        return monitor;
     }
 
     @Transactional
-    public void update(long id, Monitor monitor) {
-        Monitor toBeUpdated = show(id);
-        toBeUpdated.setCommodityType(monitor.getCommodityType());
-        toBeUpdated.setSeriesNumber(monitor.getSeriesNumber());
-        toBeUpdated.setManufacturer(monitor.getManufacturer());
-        toBeUpdated.setPrice(monitor.getPrice());
-        toBeUpdated.setQuantity(monitor.getQuantity());
-        toBeUpdated.setDiagonal(monitor.getDiagonal());
-        monitorRepository.save(toBeUpdated);
+    public Monitor update(Monitor monitorFromDB, Monitor newMonitor) {
+        BeanUtils.copyProperties(newMonitor, monitorFromDB, "id");
+        monitorRepository.save(monitorFromDB);
+        return monitorFromDB;
     }
 
     @Transactional
-    public void delete (long id) {
-        monitorRepository.deleteById(id);
+    public void delete (Monitor monitor) {
+        monitorRepository.delete(monitor);
     }
 
 }

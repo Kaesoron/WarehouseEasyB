@@ -2,6 +2,7 @@ package org.kaesoron.warehouse.dao;
 
 import org.kaesoron.warehouse.models.Notebook;
 import org.kaesoron.warehouse.repository.NotebookRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,30 +18,22 @@ public class NotebookDAO {
         return notebookRepository.findAll();
     }
 
-    public Notebook show(long id) {
-        return notebookRepository.findById(id).orElse(null);
-    }
-
     @Transactional
-    public void save(Notebook notebook) {
+    public Notebook save(Notebook notebook) {
         notebookRepository.save(notebook);
+        return notebook;
     }
 
     @Transactional
-    public void update(long id, Notebook notebook) {
-        Notebook toBeUpdated = show(id);
-        toBeUpdated.setCommodityType(notebook.getCommodityType());
-        toBeUpdated.setSeriesNumber(notebook.getSeriesNumber());
-        toBeUpdated.setManufacturer(notebook.getManufacturer());
-        toBeUpdated.setPrice(notebook.getPrice());
-        toBeUpdated.setQuantity(notebook.getQuantity());
-        toBeUpdated.setScreenDiagonal(notebook.getScreenDiagonal());
-        notebookRepository.save(toBeUpdated);
+    public Notebook update(Notebook notebookFromDB, Notebook newNotebook) {
+        BeanUtils.copyProperties(newNotebook, notebookFromDB, "id");
+        notebookRepository.save(notebookFromDB);
+        return notebookFromDB;
     }
 
     @Transactional
-    public void delete (long id) {
-        notebookRepository.deleteById(id);
+    public void delete (Notebook notebook) {
+        notebookRepository.delete(notebook);
     }
 
 }

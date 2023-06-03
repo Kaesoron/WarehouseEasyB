@@ -1,6 +1,5 @@
 package org.kaesoron.warehouse.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.kaesoron.warehouse.dao.HDDDAO;
 import org.kaesoron.warehouse.models.HDD;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,14 +10,14 @@ import java.util.List;
 @RestController
 @RequestMapping("hdd")
 public class HDDController {
-    private final HDDDAO hdddao;
+    private final HDDDAO hddDao;
     public HDDController(HDDDAO hdddao) {
-        this.hdddao = hdddao;
+        this.hddDao = hdddao;
     }
 
     @GetMapping("")
     public List<HDD> index() {
-        return hdddao.index();
+        return hddDao.index();
     }
 
     @GetMapping("{id}")
@@ -29,7 +28,7 @@ public class HDDController {
     @Transactional
     @PostMapping("")
     public HDD create(@RequestBody HDD hdd) {
-        return hdddao.save(hdd);
+        return hddDao.save(hdd);
     }
 
     @Transactional
@@ -37,13 +36,13 @@ public class HDDController {
     public HDD update(
             @PathVariable("id") HDD hddFromDB,
             @RequestBody HDD newHdd) {
-        return hdddao.update(hddFromDB, newHdd);
+        return hddDao.update(hddFromDB, newHdd);
     }
 
     @Transactional
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") HDD hdd) {
-        hdddao.delete(hdd);
+        hddDao.delete(hdd);
     }
 
 }

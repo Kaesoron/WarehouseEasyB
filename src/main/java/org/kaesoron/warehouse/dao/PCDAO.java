@@ -2,6 +2,7 @@ package org.kaesoron.warehouse.dao;
 
 import org.kaesoron.warehouse.models.PC;
 import org.kaesoron.warehouse.repository.PCRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,30 +18,22 @@ public class PCDAO {
         return pcRepository.findAll();
     }
 
-    public PC show(long id) {
-        return pcRepository.findById(id).orElse(null);
+    @Transactional
+    public PC save(PC pc) {
+        pcRepository.save(pc);
+        return pc;
     }
 
     @Transactional
-    public void save(PC notebook) {
-        pcRepository.save(notebook);
+    public PC update(PC pcFromDB, PC newPc) {
+        BeanUtils.copyProperties(newPc, pcFromDB, "id");
+        pcRepository.save(pcFromDB);
+        return pcFromDB;
     }
 
     @Transactional
-    public void update(long id, PC pc) {
-        PC toBeUpdated = show(id);
-        toBeUpdated.setCommodityType(pc.getCommodityType());
-        toBeUpdated.setSeriesNumber(pc.getSeriesNumber());
-        toBeUpdated.setManufacturer(pc.getManufacturer());
-        toBeUpdated.setPrice(pc.getPrice());
-        toBeUpdated.setQuantity(pc.getQuantity());
-        toBeUpdated.setPcType(pc.getPcType());
-        pcRepository.save(toBeUpdated);
-    }
-
-    @Transactional
-    public void delete (long id) {
-        pcRepository.deleteById(id);
+    public void delete (PC pc) {
+        pcRepository.delete(pc);
     }
 
 }

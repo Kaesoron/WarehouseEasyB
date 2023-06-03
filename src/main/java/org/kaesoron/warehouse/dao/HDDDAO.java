@@ -1,6 +1,5 @@
 package org.kaesoron.warehouse.dao;
 
-import org.kaesoron.warehouse.exceptions.NotFoundException;
 import org.kaesoron.warehouse.models.HDD;
 import org.kaesoron.warehouse.repository.HDDRepository;
 import org.springframework.beans.BeanUtils;
@@ -17,10 +16,6 @@ public class HDDDAO {
 
     public List<HDD> index() {
         return hddRepository.findAll();
-    }
-
-    public HDD show(long id) {
-        return hddRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     @Transactional
