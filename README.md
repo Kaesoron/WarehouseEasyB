@@ -5,6 +5,7 @@ This is a REST-application, so it consumes and produces JSON.
 Made with Spring, using H2 in-memory database.
 
 DESCRIPTION:
+
 A store that sells computers and accessories with the following product type: 
   ● Personal computers(PCs)
   ● Notebooks 
