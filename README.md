@@ -1,11 +1,12 @@
 # WarehouseEasyB
-This is a test project made for electronics shop.
+This is a test project.
 This is a REST-application, so it consumes and produces JSON.
 
 Made with Spring, using H2 in-memory database.
 
+DESCRIPTION:
 A store that sells computers and accessories with the following product type: 
-  ● Desktops 
+  ● Personal computers(PCs)
   ● Notebooks 
   ● Monitors 
   ● Hard Drives 
@@ -24,11 +25,28 @@ Having methods that perform:
 3. Viewing all existing products by type 
 4. Viewing a product by ID
 
-HOW TO START:
+HOW TO USE:
 1. Run the application;
-2. Open http://localhost:8080/ in browser will return the list of products;
-3. http://localhost:8080/hdd will return a list of HDD, as well for other types:
-   http://localhost:8080/pc
-4. http://localhost:8080/notebook
-5. http://localhost:8080/monitor
-4. ss
+2. Opening http://localhost:8080 in browser will return the list of products;
+3. http://localhost:8080/777 will open a details for product with id=777 (if exists). 
+The same will work with http://localhost:8080/hdd/777 directory if the product is hdd.
+3. TO VIEW BY TYPE:
+   http://localhost:8080/hdds will return a list of HDD, as well for other types:
+   http://localhost:8080/pcs returns a list of PCs
+   http://localhost:8080/notebooks returns a list of Notebooks
+   http://localhost:8080/monitors returns a list of Monitors
+4. TO ADD a product, make POST with JSON to one of the category hyperlinks (above)
+5. TO EDIT a product, make PUT with JSON to one of the category hyperlinks
+
+Here is an example JSON for HDD:
+
+{
+"id": 1000,
+"commodityType": "HDD",
+"seriesNumber": 100500,
+"manufacturer": "SOME COMPANY",
+"price": 1000.0,
+"quantity": 10000,
+"volume": 1000,
+"volumeMeasure": "GIGABYTES"
+}
