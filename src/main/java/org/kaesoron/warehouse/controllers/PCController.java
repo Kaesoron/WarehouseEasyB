@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("pc")
+@RequestMapping("pcs")
 public class PCController {
     private final PCDAO pcDao;
     public PCController(PCDAO pcDao) {

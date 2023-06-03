@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("notebook")
+@RequestMapping("notebooks")
 public class NotebookController {
     private final NotebookDAO notebookDao;
     public NotebookController(NotebookDAO notebookDao) {

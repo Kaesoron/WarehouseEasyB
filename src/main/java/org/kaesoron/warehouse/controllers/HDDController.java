@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("hdd")
+@RequestMapping("hdds")
 public class HDDController {
     private final HDDDAO hddDao;
     public HDDController(HDDDAO hdddao) {
