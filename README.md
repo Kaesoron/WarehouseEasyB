@@ -39,15 +39,4 @@ The same will work with http://localhost:8080/hdd/777 directory if the product i
 4. TO ADD a product, make POST with JSON to one of the category hyperlinks (above)
 5. TO EDIT a product, make PUT with JSON to one of the category hyperlinks
 
-Here is an example JSON for HDD:
-
-{
-"id": 1000,
-"commodityType": "HDD",
-"seriesNumber": 100500,
-"manufacturer": "SOME COMPANY",
-"price": 1000.0,
-"quantity": 10000,
-"volume": 1000,
-"volumeMeasure": "GIGABYTES"
-}
+Use http://localhost:8080/swagger-ui/index.html#/ to get SWAGGER documentation
