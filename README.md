@@ -5,19 +5,20 @@ This is a REST-application, so it consumes and produces JSON.
 Made with Spring, using H2 in-memory database.
 
 DESCRIPTION:
+
 A store that sells computers and accessories with the following product type: 
-  ● Personal computers(PCs)
-  ● Notebooks 
-  ● Monitors 
-  ● Hard Drives 
+1. Personal computers(PCs)
+2. Notebooks 
+3. Monitors 
+4. Hard Drives 
 
 Each product has the following properties: 
-  ● Serial number 
-  ● Manufacturer 
-  ● Price 
-  ● Number of units in stock beeches are divided by size: 13, 14, 15, 17 inches 
-  ● Monitors have a diagonal 
-  ● Hard disks and have a capacity 
+1. Serial number 
+2. Manufacturer 
+3. Price 
+4. Number of units in stock beeches are divided by size: 13, 14, 15, 17 inches 
+5. Monitors have a diagonal 
+6. Hard disks and have a capacity 
 
 Having methods that perform:
 1. Adding a product 
