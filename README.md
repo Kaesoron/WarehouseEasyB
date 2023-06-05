@@ -26,6 +26,8 @@ Having methods that perform:
 3. Viewing all existing products by type 
 4. Viewing a product by ID
 
+Use http://localhost:8080/swagger-ui/index.html#/ to get SWAGGER documentation
+
 HOW TO USE:
 1. Run the application;
 2. Opening http://localhost:8080 in browser will return the list of products;
@@ -38,5 +40,3 @@ The same will work with http://localhost:8080/hdd/777 directory if the product i
    http://localhost:8080/monitors returns a list of Monitors
 4. TO ADD a product, make POST with JSON to one of the category hyperlinks (above)
 5. TO EDIT a product, make PUT with JSON to one of the category hyperlinks
-
-Use http://localhost:8080/swagger-ui/index.html#/ to get SWAGGER documentation
